@@ -5,33 +5,85 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_all"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:title="All" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_explicit"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:title="Explicit" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_dev"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:title="Dev" />
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/nav_movies"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:title="Movies" />
+        <item
+            android:id="@+id/nav_food"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Food" />
+        <item
+            android:id="@+id/nav_celebrity"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Celebrity" />
+        <item
+            android:id="@+id/nav_science"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Science" />
+        <item
+            android:id="@+id/nav_politics"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Politics" />
+        <item
+            android:id="@+id/nav_sports"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Sports" />
+        <item
+            android:id="@+id/nav_religion"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Religion" />
+        <item
+            android:id="@+id/nav_animals"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Animals" />
+        <item
+            android:id="@+id/nav_music"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Music" />
+        <item
+            android:id="@+id/nav_history"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="History" />
+        <item
+            android:id="@+id/nav_travel"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Travel" />
+        <item
+            android:id="@+id/nav_career"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Career" />
+        <item
+            android:id="@+id/nav_money"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Money" />
+        <item
+            android:id="@+id/nav_fashion"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Fashion" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="Others">
         <menu>
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
                 android:title="Share" />
             <item
-                android:id="@+id/nav_send"
+                android:id="@+id/nav_settings"
                 android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:title="Settings" />
         </menu>
     </item>
 

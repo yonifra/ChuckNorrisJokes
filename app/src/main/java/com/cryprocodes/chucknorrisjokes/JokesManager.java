@@ -5,6 +5,8 @@ import android.app.Application;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -26,6 +28,7 @@ public class JokesManager {
     private String apiEndpoint = "https://api.chucknorris.io/jokes";
  //   public static TextView jokesTextView;
     public static Activity jokesActivity;
+    static ObjectMapper mapper = new ObjectMapper();
 
     public static JokesManager getInstance() {
         return ourInstance;
@@ -34,6 +37,15 @@ public class JokesManager {
     private JokesManager() {
         currentCategory = "all";
         updateRandomJoke();
+    }
+
+    private static Joke getJokeFromJson(String json) {
+        try {
+            return mapper.readValue(json, Joke.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public String getAllCategories() {
@@ -72,7 +84,10 @@ public class JokesManager {
             jokesActivity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    jokesTextView.setText(responseText);
+                    Joke j = getJokeFromJson(responseText);
+                    if (j != null) {
+                        jokesTextView.setText(j.value);
+                    }
                 }
             });
         }

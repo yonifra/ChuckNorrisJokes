@@ -1,14 +1,11 @@
 package com.cryprocodes.chucknorrisjokes;
 
-import android.app.Activity;
-import android.app.Application;
-import android.util.Log;
-import android.widget.TextView;
-
+import com.cryprocodes.chucknorrisjokes.Listeners.IJokeUpdatedListener;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -16,21 +13,25 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-import static android.content.ContentValues.TAG;
-
 /**
  * Created by Jonathan on 18/10/2017.
  */
 public class JokesManager {
-    private static final JokesManager ourInstance = new JokesManager();
-    public String currentCategory;
-    OkHttpClient client = new OkHttpClient();
-    private String apiEndpoint = "https://api.chucknorris.io/jokes";
- //   public static TextView jokesTextView;
-    public static Activity jokesActivity;
-    static ObjectMapper mapper = new ObjectMapper();
+    private static JokesManager ourInstance;
+    private String currentCategory;
+    private OkHttpClient client = new OkHttpClient();
+    private ObjectMapper mapper = new ObjectMapper();
+
+    private List<IJokeUpdatedListener> listeners = new ArrayList<>();
+
+    public void addListener(IJokeUpdatedListener listener) {
+        listeners.add(listener);
+    }
 
     public static JokesManager getInstance() {
+        if (ourInstance == null) {
+            ourInstance = new JokesManager();
+        }
         return ourInstance;
     }
 
@@ -39,7 +40,7 @@ public class JokesManager {
         updateRandomJoke();
     }
 
-    private static Joke getJokeFromJson(String json) {
+    private Joke getJokeFromJson(String json) {
         try {
             return mapper.readValue(json, Joke.class);
         } catch (IOException e) {
@@ -76,24 +77,18 @@ public class JokesManager {
         }
     }
 
-    private static String responseText;
+    private String responseText;
 
-    private static void UpdateView() {
-        if (jokesActivity != null) {
-            final TextView jokesTextView = jokesActivity.findViewById(R.id.jokeTextView);
-            jokesActivity.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    Joke j = getJokeFromJson(responseText);
-                    if (j != null) {
-                        jokesTextView.setText(j.value);
-                    }
-                }
-            });
+    private void UpdateView(String jokeText) {
+        if (listeners.size() > 0) {
+            for(IJokeUpdatedListener listener : listeners) {
+                listener.updateJoke(jokeText);
+            }
         }
     }
 
-    Call run(String url) throws IOException {
+    private Call run(String url) throws IOException {
+        String apiEndpoint = "https://api.chucknorris.io/jokes";
         Request request = new Request.Builder()
                 .url(apiEndpoint + url)
                 .build();
@@ -112,7 +107,8 @@ public class JokesManager {
                 } else {
                     // do something wih the result
                     responseText = response.body().string();
-                    UpdateView();
+                    Joke joke = getJokeFromJson(responseText);
+                    UpdateView(joke.value);
                 }
             }
         });

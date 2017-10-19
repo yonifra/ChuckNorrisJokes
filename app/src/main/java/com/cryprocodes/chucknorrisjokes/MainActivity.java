@@ -16,6 +16,8 @@ import android.widget.TextView;
 
 import com.cryprocodes.chucknorrisjokes.Listeners.IJokeUpdatedListener;
 
+import me.grantland.widget.AutofitTextView;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, IJokeUpdatedListener{
 
@@ -108,7 +110,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void updateJoke(String jokeText) {
-        final TextView jokeTextView = findViewById(R.id.jokeTextView);
+        final AutofitTextView jokeTextView = findViewById(R.id.jokeTextView);
         final String joke = jokeText;
 
         runOnUiThread(new Runnable() {

@@ -108,7 +108,10 @@ public class JokesManager {
                     // do something wih the result
                     responseText = response.body().string();
                     Joke joke = getJokeFromJson(responseText);
-                    UpdateView(joke.value);
+
+                    if (joke != null) {
+                        UpdateView(joke.value);
+                    }
                 }
             }
         });

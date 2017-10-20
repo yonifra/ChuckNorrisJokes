@@ -6,7 +6,7 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_all"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_all_black_24dp"
             android:title="All" />
         <item
             android:id="@+id/nav_explicit"
@@ -14,7 +14,7 @@
             android:title="Explicit" />
         <item
             android:id="@+id/nav_dev"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_dev_black_24dp"
             android:title="Dev" />
         <item
             android:id="@+id/nav_movies"
@@ -26,11 +26,11 @@
             android:title="Food" />
         <item
             android:id="@+id/nav_celebrity"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_celebrity_black_24dp"
             android:title="Celebrity" />
         <item
             android:id="@+id/nav_science"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_science_black_24dp"
             android:title="Science" />
         <item
             android:id="@+id/nav_politics"
@@ -38,7 +38,7 @@
             android:title="Politics" />
         <item
             android:id="@+id/nav_sports"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_sports_black_24dp"
             android:title="Sports" />
         <item
             android:id="@+id/nav_religion"
@@ -50,7 +50,7 @@
             android:title="Animals" />
         <item
             android:id="@+id/nav_music"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_music_black_24dp"
             android:title="Music" />
         <item
             android:id="@+id/nav_history"

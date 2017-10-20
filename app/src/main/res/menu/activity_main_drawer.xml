@@ -10,7 +10,7 @@
             android:title="All" />
         <item
             android:id="@+id/nav_explicit"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_explicit_black_24dp"
             android:title="Explicit" />
         <item
             android:id="@+id/nav_dev"
@@ -18,11 +18,11 @@
             android:title="Dev" />
         <item
             android:id="@+id/nav_movies"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_movie_black_24dp"
             android:title="Movies" />
         <item
             android:id="@+id/nav_food"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_food_black_24dp"
             android:title="Food" />
         <item
             android:id="@+id/nav_celebrity"
@@ -34,7 +34,7 @@
             android:title="Science" />
         <item
             android:id="@+id/nav_politics"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_politics_black_24dp"
             android:title="Politics" />
         <item
             android:id="@+id/nav_sports"

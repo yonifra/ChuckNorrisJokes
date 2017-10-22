@@ -21,6 +21,7 @@ public class JokesManager {
     private String currentCategory;
     private OkHttpClient client = new OkHttpClient();
     private ObjectMapper mapper = new ObjectMapper();
+    private Joke currentJoke = null;
 
     private List<IJokeUpdatedListener> listeners = new ArrayList<>();
 
@@ -79,10 +80,12 @@ public class JokesManager {
 
     private String responseText;
 
-    private void UpdateView(String jokeText) {
+    private void UpdateView(Joke joke) {
+        currentJoke = joke;
+
         if (listeners.size() > 0) {
             for(IJokeUpdatedListener listener : listeners) {
-                listener.updateJoke(jokeText);
+                listener.updateJoke(currentJoke);
             }
         }
     }
@@ -110,12 +113,16 @@ public class JokesManager {
                     Joke joke = getJokeFromJson(responseText);
 
                     if (joke != null) {
-                        UpdateView(joke.value);
+                        UpdateView(joke);
                     }
                 }
             }
         });
 
         return call;
+    }
+
+    public Joke getCurrentJoke() {
+        return currentJoke;
     }
 }

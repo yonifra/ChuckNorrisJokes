@@ -1,5 +1,6 @@
 package com.cryprocodes.chucknorrisjokes;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -49,6 +50,22 @@ public class MainActivity extends AppCompatActivity
 
         JokesManager.getInstance().addListener(this);
         JokesManager.getInstance().updateRandomJoke();
+
+        FloatingActionButton shareFab = findViewById(R.id.shareFab);
+        shareFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Joke joke = JokesManager.getInstance().getCurrentJoke();
+
+                if (joke != null) {
+                    Intent sendIntent = new Intent();
+                    sendIntent.setAction(Intent.ACTION_SEND);
+                    sendIntent.putExtra(Intent.EXTRA_TEXT, "Here's a fun Chuck Norris Joke:\n" + joke.value);
+                    sendIntent.setType("text/plain");
+                    startActivity(sendIntent);
+                }
+            }
+        });
     }
 
     @Override
@@ -109,14 +126,19 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void updateJoke(String jokeText) {
+    public void updateJoke(Joke joke) {
         final AutofitTextView jokeTextView = findViewById(R.id.jokeTextView);
-        final String joke = jokeText;
+        final TextView categoryTextView = findViewById(R.id.categoryTextView);
+        final String jokeText = joke.value;
+
+
+        final String jokeCategory = joke.category == null ? "Everything" : joke.category;
 
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                jokeTextView.setText(joke);
+                jokeTextView.setText(jokeText);
+                categoryTextView.setText("[" + jokeCategory + "]");
             }
         });
     }

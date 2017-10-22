@@ -5,9 +5,9 @@ package com.cryprocodes.chucknorrisjokes;
  */
 
 public class Joke {
-    String category;
-    String icon_url;
-    String id;
-    String url;
-    String value;
+    public String category;
+    public String icon_url;
+    public String id;
+    public String url;
+    public String value;
 }

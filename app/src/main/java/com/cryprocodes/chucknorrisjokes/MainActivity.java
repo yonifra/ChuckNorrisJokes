@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view) {
 //                Snackbar.make(view, "Refreshing joke...", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
+                // TODO: Change this to take into consideration the currently selected category
                 JokesManager.getInstance().updateRandomJoke();
             }
         });
@@ -106,18 +107,49 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        Category newCategory = JokesManager.getInstance().getCurrentCategory();
+
         if (id == R.id.nav_all) {
-            // Handle the camera action
+            newCategory = Category.All;
         } else if (id == R.id.nav_explicit) {
-
+            newCategory = Category.Explicit;
         } else if (id == R.id.nav_dev) {
-
+            newCategory = Category.Dev;
         } else if (id == R.id.nav_movies) {
-
+            newCategory = Category.Movie;
+        } else if (id == R.id.nav_food) {
+            newCategory = Category.Food;
+        } else if (id == R.id.nav_celebrity) {
+            newCategory = Category.Celebrity;
+        } else if (id == R.id.nav_science) {
+            newCategory = Category.Science;
+        } else if (id == R.id.nav_politics) {
+            newCategory = Category.Political;
+        } else if (id == R.id.nav_sports) {
+            newCategory = Category.Sport;
+        } else if (id == R.id.nav_religion) {
+            newCategory = Category.Religion;
+        } else if (id == R.id.nav_animals) {
+            newCategory = Category.Animal;
+        } else if (id == R.id.nav_music) {
+            newCategory = Category.Music;
+        } else if (id == R.id.nav_history) {
+            newCategory = Category.History;
+        } else if (id == R.id.nav_travel) {
+            newCategory = Category.Travel;
+        } else if (id == R.id.nav_career) {
+            newCategory = Category.Career;
+        } else if (id == R.id.nav_money) {
+            newCategory = Category.Money;
+        } else if (id == R.id.nav_fashion) {
+            newCategory = Category.Fashion;
         } else if (id == R.id.nav_share) {
-
         } else if (id == R.id.nav_settings) {
 
+        }
+
+        if (newCategory != JokesManager.getInstance().getCurrentCategory()) {
+            JokesManager.getInstance().updateJokeByCategory(newCategory);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -131,8 +163,7 @@ public class MainActivity extends AppCompatActivity
         final TextView categoryTextView = findViewById(R.id.categoryTextView);
         final String jokeText = joke.value;
 
-
-        final String jokeCategory = joke.category == null ? "Everything" : joke.category;
+        final String jokeCategory = (joke.category == null) ? "Everything" : joke.category.get(0);
 
         runOnUiThread(new Runnable() {
             @Override

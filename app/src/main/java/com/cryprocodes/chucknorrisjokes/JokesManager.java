@@ -18,7 +18,7 @@ import okhttp3.Response;
  */
 public class JokesManager {
     private static JokesManager ourInstance;
-    private String currentCategory;
+    private Category currentCategory;
     private OkHttpClient client = new OkHttpClient();
     private ObjectMapper mapper = new ObjectMapper();
     private Joke currentJoke = null;
@@ -37,7 +37,7 @@ public class JokesManager {
     }
 
     private JokesManager() {
-        currentCategory = "all";
+        currentCategory = Category.All;
         updateRandomJoke();
     }
 
@@ -65,13 +65,15 @@ public class JokesManager {
         updateJokeByCategory(currentCategory);
     }
 
-    public void updateJokeByCategory(String category) {
+    public void updateJokeByCategory(Category category) {
         try {
-            if (category == "all") {
+            updateCategory(category);
+
+            if (currentCategory == Category.All) {
                 run("/random");
             }
             else {
-                run("/random?category=" + category);
+                run("/random?category=" + currentCategory.toString().toLowerCase());
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -122,7 +124,15 @@ public class JokesManager {
         return call;
     }
 
+    private void updateCategory(Category newCategory) {
+        currentCategory = newCategory;
+    }
+
     public Joke getCurrentJoke() {
         return currentJoke;
+    }
+
+    public Category getCurrentCategory() {
+        return currentCategory;
     }
 }

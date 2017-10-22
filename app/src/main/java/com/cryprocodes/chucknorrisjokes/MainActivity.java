@@ -56,17 +56,21 @@ public class MainActivity extends AppCompatActivity
         shareFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Joke joke = JokesManager.getInstance().getCurrentJoke();
-
-                if (joke != null) {
-                    Intent sendIntent = new Intent();
-                    sendIntent.setAction(Intent.ACTION_SEND);
-                    sendIntent.putExtra(Intent.EXTRA_TEXT, "Here's a fun Chuck Norris Joke:\n" + joke.value);
-                    sendIntent.setType("text/plain");
-                    startActivity(sendIntent);
-                }
+                ShareJoke();
             }
         });
+    }
+
+    private void ShareJoke() {
+        Joke joke = JokesManager.getInstance().getCurrentJoke();
+
+        if (joke != null) {
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "Here's a fun Chuck Norris Joke:\n" + joke.value);
+            sendIntent.setType("text/plain");
+            startActivity(sendIntent);
+        }
     }
 
     @Override
@@ -144,6 +148,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_fashion) {
             newCategory = Category.Fashion;
         } else if (id == R.id.nav_share) {
+            ShareJoke();
         } else if (id == R.id.nav_settings) {
 
         }

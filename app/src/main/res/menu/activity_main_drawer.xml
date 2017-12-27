@@ -42,11 +42,11 @@
             android:title="Sports" />
         <item
             android:id="@+id/nav_religion"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_religion_black_24dp"
             android:title="Religion" />
         <item
             android:id="@+id/nav_animals"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_animals_black_24dp"
             android:title="Animals" />
         <item
             android:id="@+id/nav_music"
@@ -54,23 +54,23 @@
             android:title="Music" />
         <item
             android:id="@+id/nav_history"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_history_black_24dp"
             android:title="History" />
         <item
             android:id="@+id/nav_travel"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_travel_black_24dp"
             android:title="Travel" />
         <item
             android:id="@+id/nav_career"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_career_black_24dp"
             android:title="Career" />
         <item
             android:id="@+id/nav_money"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_money_black_24dp"
             android:title="Money" />
         <item
             android:id="@+id/nav_fashion"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_fashion_black_24dp"
             android:title="Fashion" />
     </group>
 
@@ -82,7 +82,7 @@
                 android:title="Share" />
             <item
                 android:id="@+id/nav_settings"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/ic_settings_black_24dp"
                 android:title="Settings" />
         </menu>
     </item>

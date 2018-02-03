@@ -3,8 +3,6 @@ package com.cryprocodes.chucknorrisjokes;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -13,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.cryprocodes.chucknorrisjokes.Listeners.IJokeUpdatedListener;
@@ -33,8 +32,6 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Snackbar.make(view, "Refreshing joke...", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
                 // TODO: Change this to take into consideration the currently selected category
                 JokesManager.getInstance().updateRandomJoke();
             }
@@ -113,44 +110,64 @@ public class MainActivity extends AppCompatActivity
 
         Category newCategory = JokesManager.getInstance().getCurrentCategory();
 
-        if (id == R.id.nav_all) {
-            newCategory = Category.All;
-        } else if (id == R.id.nav_explicit) {
-            newCategory = Category.Explicit;
-        } else if (id == R.id.nav_dev) {
-            newCategory = Category.Dev;
-        } else if (id == R.id.nav_movies) {
-            newCategory = Category.Movie;
-        } else if (id == R.id.nav_food) {
-            newCategory = Category.Food;
-        } else if (id == R.id.nav_celebrity) {
-            newCategory = Category.Celebrity;
-        } else if (id == R.id.nav_science) {
-            newCategory = Category.Science;
-        } else if (id == R.id.nav_politics) {
-            newCategory = Category.Political;
-        } else if (id == R.id.nav_sports) {
-            newCategory = Category.Sport;
-        } else if (id == R.id.nav_religion) {
-            newCategory = Category.Religion;
-        } else if (id == R.id.nav_animals) {
-            newCategory = Category.Animal;
-        } else if (id == R.id.nav_music) {
-            newCategory = Category.Music;
-        } else if (id == R.id.nav_history) {
-            newCategory = Category.History;
-        } else if (id == R.id.nav_travel) {
-            newCategory = Category.Travel;
-        } else if (id == R.id.nav_career) {
-            newCategory = Category.Career;
-        } else if (id == R.id.nav_money) {
-            newCategory = Category.Money;
-        } else if (id == R.id.nav_fashion) {
-            newCategory = Category.Fashion;
-        } else if (id == R.id.nav_share) {
-            ShareJoke();
-        } else if (id == R.id.nav_settings) {
-
+        switch (id) {
+            case R.id.nav_all:
+                newCategory = Category.All;
+                break;
+            case R.id.nav_explicit:
+                newCategory = Category.Explicit;
+                break;
+            case R.id.nav_dev:
+                newCategory = Category.Dev;
+                break;
+            case R.id.nav_movies:
+                newCategory = Category.Movie;
+                break;
+            case R.id.nav_food:
+                newCategory = Category.Food;
+                break;
+            case R.id.nav_celebrity:
+                newCategory = Category.Celebrity;
+                break;
+            case R.id.nav_science:
+                newCategory = Category.Science;
+                break;
+            case R.id.nav_politics:
+                newCategory = Category.Political;
+                break;
+            case R.id.nav_sports:
+                newCategory = Category.Sport;
+                break;
+            case R.id.nav_religion:
+                newCategory = Category.Religion;
+                break;
+            case R.id.nav_animals:
+                newCategory = Category.Animal;
+                break;
+            case R.id.nav_music:
+                newCategory = Category.Music;
+                break;
+            case R.id.nav_history:
+                newCategory = Category.History;
+                break;
+            case R.id.nav_travel:
+                newCategory = Category.Travel;
+                break;
+            case R.id.nav_career:
+                newCategory = Category.Career;
+                break;
+            case R.id.nav_money:
+                newCategory = Category.Money;
+                break;
+            case R.id.nav_fashion:
+                newCategory = Category.Fashion;
+                break;
+            case R.id.nav_share:
+                ShareJoke();
+                break;
+            case R.id.nav_settings:
+                // TODO: Move to the app settings activity
+                break;
         }
 
         if (newCategory != JokesManager.getInstance().getCurrentCategory()) {

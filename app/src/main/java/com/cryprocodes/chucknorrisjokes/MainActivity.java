@@ -184,14 +184,13 @@ public class MainActivity extends AppCompatActivity
         final AutofitTextView jokeTextView = findViewById(R.id.jokeTextView);
         final TextView categoryTextView = findViewById(R.id.categoryTextView);
         final String jokeText = joke.value;
-
         final String jokeCategory = (joke.category == null) ? "Everything" : joke.category.get(0);
 
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 jokeTextView.setText(jokeText);
-                categoryTextView.setText("[" + jokeCategory + "]");
+                categoryTextView.setText(String.format("[%s]", jokeCategory));
             }
         });
     }

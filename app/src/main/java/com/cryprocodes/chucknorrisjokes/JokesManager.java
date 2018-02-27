@@ -13,9 +13,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-/**
- * Created by Jonathan on 18/10/2017.
- */
 public class JokesManager {
     private static JokesManager ourInstance;
     private Category currentCategory;
@@ -25,11 +22,11 @@ public class JokesManager {
 
     private List<IJokeUpdatedListener> listeners = new ArrayList<>();
 
-    public void addListener(IJokeUpdatedListener listener) {
+    void addListener(IJokeUpdatedListener listener) {
         listeners.add(listener);
     }
 
-    public static JokesManager getInstance() {
+    static JokesManager getInstance() {
         if (ourInstance == null) {
             ourInstance = new JokesManager();
         }
@@ -53,7 +50,7 @@ public class JokesManager {
     public String getAllCategories() {
         try {
             // TODO: Fix this, it doesn't really get all categories at the moment
-            run("/categories");
+            executeApiCall("/categories");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -61,19 +58,19 @@ public class JokesManager {
         return "";
     }
 
-    public void updateRandomJoke() {
+    void updateRandomJoke() {
         updateJokeByCategory(currentCategory);
     }
 
-    public void updateJokeByCategory(Category category) {
+    void updateJokeByCategory(Category category) {
         try {
             updateCategory(category);
 
             if (currentCategory == Category.All) {
-                run("/random");
+                executeApiCall("/random");
             }
             else {
-                run("/random?category=" + currentCategory.toString().toLowerCase());
+                executeApiCall("/random?category=" + currentCategory.toString().toLowerCase());
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -92,7 +89,7 @@ public class JokesManager {
         }
     }
 
-    private Call run(String url) throws IOException {
+    private Call executeApiCall(String url) throws IOException {
         String apiEndpoint = "https://api.chucknorris.io/jokes";
         Request request = new Request.Builder()
                 .url(apiEndpoint + url)
@@ -128,11 +125,11 @@ public class JokesManager {
         currentCategory = newCategory;
     }
 
-    public Joke getCurrentJoke() {
+    Joke getCurrentJoke() {
         return currentJoke;
     }
 
-    public Category getCurrentCategory() {
+    Category getCurrentCategory() {
         return currentCategory;
     }
 }

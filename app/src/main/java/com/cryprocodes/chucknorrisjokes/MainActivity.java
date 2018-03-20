@@ -19,7 +19,7 @@ import com.cryprocodes.chucknorrisjokes.Listeners.IJokeUpdatedListener;
 import me.grantland.widget.AutofitTextView;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, IJokeUpdatedListener{
+        implements NavigationView.OnNavigationItemSelectedListener, IJokeUpdatedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

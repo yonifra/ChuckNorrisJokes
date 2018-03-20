@@ -19,6 +19,7 @@ public class JokesManager {
     private OkHttpClient client = new OkHttpClient();
     private ObjectMapper mapper = new ObjectMapper();
     private Joke currentJoke = null;
+    private static final String apiEndpoint = "https://api.chucknorris.io/jokes";
 
     private List<IJokeUpdatedListener> listeners = new ArrayList<>();
 
@@ -68,8 +69,7 @@ public class JokesManager {
 
             if (currentCategory == Category.All) {
                 executeApiCall("/random");
-            }
-            else {
+            } else {
                 executeApiCall("/random?category=" + currentCategory.toString().toLowerCase());
             }
         } catch (IOException e) {
@@ -83,14 +83,14 @@ public class JokesManager {
         currentJoke = joke;
 
         if (listeners.size() > 0) {
-            for(IJokeUpdatedListener listener : listeners) {
+            for (IJokeUpdatedListener listener : listeners) {
                 listener.updateJoke(currentJoke);
             }
         }
     }
 
     private Call executeApiCall(String url) throws IOException {
-        String apiEndpoint = "https://api.chucknorris.io/jokes";
+
         Request request = new Request.Builder()
                 .url(apiEndpoint + url)
                 .build();

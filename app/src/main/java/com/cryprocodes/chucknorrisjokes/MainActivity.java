@@ -51,14 +51,6 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-      //  Button shareButton = findViewById(R.id.shareButton);
-//        shareButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                ShareJoke();
-//            }
-//        });
-
         jokes = new ArrayList<>();
         jokesListView = findViewById(R.id.jokesListView);
         jokesAdapter = new ArrayAdapter<Joke>
@@ -78,12 +70,19 @@ public class MainActivity extends AppCompatActivity
                         convertView.findViewById(R.id.categoryTextView);
                 final TextView jokeText =
                         convertView.findViewById(R.id.jokeTextView);
+                final Button shareButton = convertView.findViewById(R.id.shareButton);
 
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         categoryText.setText((joke.category == null) ? "Everything" : joke.category.get(0));
                         jokeText.setText(joke.value);
+                        shareButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                ShareJoke();
+                            }
+                        });
                     }
                 });
 
@@ -98,7 +97,6 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         JokesManager.getInstance().addListener(this);
-      //  JokesManager.getInstance().updateRandomJoke();
     }
 
     private void ShareJoke() {

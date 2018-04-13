@@ -12,13 +12,22 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.cryprocodes.chucknorrisjokes.Listeners.IJokeUpdatedListener;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, IJokeUpdatedListener {
+
+    ListView jokesListView;
+    ArrayList<Joke> jokes;
+    ArrayAdapter<Joke> jokesAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,19 +51,54 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        Button shareButton = findViewById(R.id.shareButton);
-        shareButton.setOnClickListener(new View.OnClickListener() {
+      //  Button shareButton = findViewById(R.id.shareButton);
+//        shareButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                ShareJoke();
+//            }
+//        });
+
+        jokes = new ArrayList<>();
+        jokesListView = findViewById(R.id.jokesListView);
+        jokesAdapter = new ArrayAdapter<Joke>
+                (MainActivity.this, R.layout.joke_layout,
+                        jokes) {
             @Override
-            public void onClick(View view) {
-                ShareJoke();
+            public View getView(int pos, View convertView, ViewGroup parent) {
+                // Inflate only once
+                if (convertView == null) {
+                    convertView = getLayoutInflater()
+                            .inflate(R.layout.joke_layout, null, false);
+                }
+
+                final Joke joke = jokes.get(pos);
+
+                final TextView categoryText =
+                        convertView.findViewById(R.id.categoryTextView);
+                final TextView jokeText =
+                        convertView.findViewById(R.id.jokeTextView);
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        categoryText.setText((joke.category == null) ? "Everything" : joke.category.get(0));
+                        jokeText.setText(joke.value);
+                    }
+                });
+
+
+                return convertView;
             }
-        });
+        };
+
+        jokesListView.setAdapter(jokesAdapter);
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         JokesManager.getInstance().addListener(this);
-        JokesManager.getInstance().updateRandomJoke();
+      //  JokesManager.getInstance().updateRandomJoke();
     }
 
     private void ShareJoke() {
@@ -170,6 +214,14 @@ public class MainActivity extends AppCompatActivity
         }
 
         if (newCategory != JokesManager.getInstance().getCurrentCategory()) {
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    jokesAdapter.clear();
+                }
+            });
+
             JokesManager.getInstance().updateJokeByCategory(newCategory);
         }
 
@@ -179,17 +231,11 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void updateJoke(Joke joke) {
-        final TextView jokeTextView = findViewById(R.id.jokeTextView);
-        final TextView categoryTextView = findViewById(R.id.categoryTextView);
-        final String jokeText = joke.value;
-        final String jokeCategory = (joke.category == null) ? "Everything" : joke.category.get(0);
-
+    public void updateJoke(final Joke joke) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                jokeTextView.setText(jokeText);
-                categoryTextView.setText(String.format("%s", jokeCategory.toUpperCase()));
+                jokesAdapter.add(joke);
             }
         });
     }

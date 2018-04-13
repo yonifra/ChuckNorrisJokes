@@ -8,54 +8,11 @@
     tools:context="com.cryprocodes.chucknorrisjokes.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
-    <!-- A CardView that contains a TextView -->
-    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/card_view"
+    <ListView
+        android:id="@+id/jokesListView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_margin="10dp"
-        android:padding="6dp"
-        card_view:cardCornerRadius="1dp">
-
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:card_view="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <TextView
-                android:id="@+id/categoryTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"
-                android:textAlignment="viewStart"
-                android:textAllCaps="true"
-                android:textColor="@android:color/holo_blue_light"
-                tools:text="SPORTS" />
-
-            <TextView
-                android:id="@+id/jokeTextView"
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:textSize="18sp"
-                tools:text="Chuck Norris doesn't pair program" />
-
-            <Button
-                android:id="@+id/shareButton"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/shareButtonText" />
-
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
-
+        android:layout_height="match_parent"
+        android:divider="@null"
+        android:dividerHeight="10.0sp"
+        android:padding="5dp" />
 </android.support.constraint.ConstraintLayout>

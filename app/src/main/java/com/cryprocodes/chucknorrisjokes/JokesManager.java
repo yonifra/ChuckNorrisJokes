@@ -48,32 +48,17 @@ public class JokesManager {
         }
     }
 
-    public String getAllCategories() {
-        try {
-            // TODO: Fix this, it doesn't really get all categories at the moment
-            executeApiCall("/categories");
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            return "";
-        }
-    }
-
     void updateRandomJoke() {
         updateJokeByCategory(currentCategory);
     }
 
     void updateJokeByCategory(Category category) {
-        try {
-            updateCategory(category);
+        updateCategory(category);
 
-            if (currentCategory == Category.All) {
-                executeApiCall("/random");
-            } else {
-                executeApiCall("/random?category=" + currentCategory.toString().toLowerCase());
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (currentCategory == Category.All) {
+            executeApiCall("/random");
+        } else {
+            executeApiCall("/random?category=" + currentCategory.toString().toLowerCase());
         }
     }
 
@@ -89,7 +74,7 @@ public class JokesManager {
         }
     }
 
-    private Call executeApiCall(String url) throws IOException {
+    private Call executeApiCall(String url) {
 
         Request request = new Request.Builder()
                 .url(apiEndpoint + url)
@@ -108,7 +93,10 @@ public class JokesManager {
                     throw new IOException("Unexpected code " + response);
                 } else {
                     // do something wih the result
-                    responseText = response.body().string();
+                    if (response.body() != null) {
+                        responseText = response.body().string();
+                    }
+
                     Joke joke = getJokeFromJson(responseText);
 
                     if (joke != null) {

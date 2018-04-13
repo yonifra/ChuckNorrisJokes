@@ -20,7 +20,6 @@ public class JokesManager {
     private ObjectMapper mapper = new ObjectMapper();
     private Joke currentJoke = null;
     private static final String apiEndpoint = "https://api.chucknorris.io/jokes";
-
     private List<IJokeUpdatedListener> listeners = new ArrayList<>();
 
     void addListener(IJokeUpdatedListener listener) {
@@ -31,6 +30,7 @@ public class JokesManager {
         if (ourInstance == null) {
             ourInstance = new JokesManager();
         }
+
         return ourInstance;
     }
 
@@ -54,9 +54,9 @@ public class JokesManager {
             executeApiCall("/categories");
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            return "";
         }
-
-        return "";
     }
 
     void updateRandomJoke() {

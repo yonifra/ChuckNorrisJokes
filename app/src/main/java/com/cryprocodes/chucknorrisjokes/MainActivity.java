@@ -12,11 +12,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.cryprocodes.chucknorrisjokes.Listeners.IJokeUpdatedListener;
-
-import me.grantland.widget.AutofitTextView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, IJokeUpdatedListener {
@@ -43,19 +42,19 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
-        JokesManager.getInstance().addListener(this);
-        JokesManager.getInstance().updateRandomJoke();
-
-        FloatingActionButton shareFab = findViewById(R.id.shareFab);
-        shareFab.setOnClickListener(new View.OnClickListener() {
+        Button shareButton = findViewById(R.id.shareButton);
+        shareButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ShareJoke();
             }
         });
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        JokesManager.getInstance().addListener(this);
+        JokesManager.getInstance().updateRandomJoke();
     }
 
     private void ShareJoke() {
@@ -181,7 +180,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void updateJoke(Joke joke) {
-        final AutofitTextView jokeTextView = findViewById(R.id.jokeTextView);
+        final TextView jokeTextView = findViewById(R.id.jokeTextView);
         final TextView categoryTextView = findViewById(R.id.categoryTextView);
         final String jokeText = joke.value;
         final String jokeCategory = (joke.category == null) ? "Everything" : joke.category.get(0);
@@ -190,7 +189,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void run() {
                 jokeTextView.setText(jokeText);
-                categoryTextView.setText(String.format("[%s]", jokeCategory));
+                categoryTextView.setText(String.format("%s", jokeCategory.toUpperCase()));
             }
         });
     }

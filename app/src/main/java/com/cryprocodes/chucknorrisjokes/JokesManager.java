@@ -1,5 +1,7 @@
 package com.cryprocodes.chucknorrisjokes;
 
+import android.util.Log;
+
 import com.cryprocodes.chucknorrisjokes.Listeners.IJokeUpdatedListener;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -14,6 +16,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class JokesManager {
+    private static final String TAG = "JOKES_MANAGER";
     private static JokesManager ourInstance;
     private Category currentCategory;
     private OkHttpClient client = new OkHttpClient();
@@ -84,7 +87,7 @@ public class JokesManager {
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
+                Log.e(TAG, "onFailure: Could not connect to the internet", e);
             }
 
             @Override

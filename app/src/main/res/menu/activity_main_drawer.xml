@@ -7,84 +7,83 @@
         <item
             android:id="@+id/nav_all"
             android:icon="@drawable/ic_all_black_24dp"
-            android:title="All" />
+            android:title="@string/all" />
         <item
             android:id="@+id/nav_explicit"
             android:icon="@drawable/ic_explicit_black_24dp"
-            android:title="Explicit" />
+            android:title="@string/explicit" />
         <item
             android:id="@+id/nav_dev"
             android:icon="@drawable/ic_dev_black_24dp"
-            android:title="Dev" />
+            android:title="@string/dev" />
         <item
             android:id="@+id/nav_movies"
             android:icon="@drawable/ic_movie_black_24dp"
-            android:title="Movies" />
+            android:title="@string/movies" />
         <item
             android:id="@+id/nav_food"
             android:icon="@drawable/ic_food_black_24dp"
-            android:title="Food" />
+            android:title="@string/food" />
         <item
             android:id="@+id/nav_celebrity"
             android:icon="@drawable/ic_celebrity_black_24dp"
-            android:title="Celebrity" />
+            android:title="@string/celebrity" />
         <item
             android:id="@+id/nav_science"
             android:icon="@drawable/ic_science_black_24dp"
-            android:title="Science" />
+            android:title="@string/science" />
         <item
             android:id="@+id/nav_politics"
             android:icon="@drawable/ic_politics_black_24dp"
-            android:title="Politics" />
+            android:title="@string/politics" />
         <item
             android:id="@+id/nav_sports"
             android:icon="@drawable/ic_sports_black_24dp"
-            android:title="Sports" />
+            android:title="@string/sports" />
         <item
             android:id="@+id/nav_religion"
             android:icon="@drawable/ic_religion_black_24dp"
-            android:title="Religion" />
+            android:title="@string/religion" />
         <item
             android:id="@+id/nav_animals"
             android:icon="@drawable/ic_animals_black_24dp"
-            android:title="Animals" />
+            android:title="@string/animals" />
         <item
             android:id="@+id/nav_music"
             android:icon="@drawable/ic_music_black_24dp"
-            android:title="Music" />
+            android:title="@string/music" />
         <item
             android:id="@+id/nav_history"
             android:icon="@drawable/ic_history_black_24dp"
-            android:title="History" />
+            android:title="@string/history" />
         <item
             android:id="@+id/nav_travel"
             android:icon="@drawable/ic_travel_black_24dp"
-            android:title="Travel" />
+            android:title="@string/travel" />
         <item
             android:id="@+id/nav_career"
             android:icon="@drawable/ic_career_black_24dp"
-            android:title="Career" />
+            android:title="@string/career" />
         <item
             android:id="@+id/nav_money"
             android:icon="@drawable/ic_money_black_24dp"
-            android:title="Money" />
+            android:title="@string/money" />
         <item
             android:id="@+id/nav_fashion"
             android:icon="@drawable/ic_fashion_black_24dp"
-            android:title="Fashion" />
+            android:title="@string/fashion" />
     </group>
 
-    <item android:title="Others">
+    <item android:title="@string/others">
         <menu>
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:title="@string/share" />
             <item
                 android:id="@+id/nav_settings"
                 android:icon="@drawable/ic_settings_black_24dp"
-                android:title="Settings" />
+                android:title="@string/settings" />
         </menu>
     </item>
-
 </menu>

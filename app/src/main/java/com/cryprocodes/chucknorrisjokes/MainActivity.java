@@ -65,11 +65,8 @@ public class MainActivity extends AppCompatActivity
                 }
 
                 final Joke joke = jokes.get(pos);
-
-                final TextView categoryText =
-                        convertView.findViewById(R.id.categoryTextView);
-                final TextView jokeText =
-                        convertView.findViewById(R.id.jokeTextView);
+                final TextView categoryText = convertView.findViewById(R.id.categoryTextView);
+                final TextView jokeText = convertView.findViewById(R.id.jokeTextView);
                 final Button shareButton = convertView.findViewById(R.id.shareButton);
 
                 runOnUiThread(new Runnable() {

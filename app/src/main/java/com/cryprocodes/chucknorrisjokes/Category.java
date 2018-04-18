@@ -5,5 +5,21 @@ package com.cryprocodes.chucknorrisjokes;
  */
 
 public enum Category {
-    All, Explicit, Dev, Movie, Food, Sport, Celebrity, Science, Political, Religion, Animal, Music, History, Travel, Career, Money, Fashion
+    All,
+    Explicit,
+    Dev,
+    Movie,
+    Food,
+    Sport,
+    Celebrity,
+    Science,
+    Political,
+    Religion,
+    Animal,
+    Music,
+    History,
+    Travel,
+    Career,
+    Money,
+    Fashion
 }

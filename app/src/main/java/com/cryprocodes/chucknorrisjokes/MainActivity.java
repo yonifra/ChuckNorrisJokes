@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.cryprocodes.chucknorrisjokes.Helpers.SnackbarHelper;
 import com.cryprocodes.chucknorrisjokes.Listeners.IJokeUpdatedListener;
 
 import java.util.ArrayList;
@@ -44,6 +45,8 @@ public class MainActivity extends AppCompatActivity
                 JokesManager.getInstance().updateRandomJoke();
             }
         });
+
+
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(

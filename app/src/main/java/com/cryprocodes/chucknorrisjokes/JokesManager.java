@@ -1,7 +1,9 @@
 package com.cryprocodes.chucknorrisjokes;
 
+import android.app.Application;
 import android.util.Log;
 
+import com.cryprocodes.chucknorrisjokes.Helpers.SnackbarHelper;
 import com.cryprocodes.chucknorrisjokes.Listeners.IJokeUpdatedListener;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
